@@ -3,6 +3,9 @@ package com.example.app_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     TextView forgotpassword;
     Button sign;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     private void login(String username1, String password1){
         if(mAuth!=null) {
@@ -81,5 +84,9 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
     }
 }
